@@ -2,26 +2,25 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, GitBranch, Download } from "lucide-react";
+import { Product } from "@/contexts/CartContext";
 
-interface ProductCardProps {
-  title: string;
-  description: string;
-  price: number;
-  rating: number;
-  downloads: number;
-  category: string;
-  image: string;
+interface ProductCardProps extends Product {
+  onViewDetails: (product: Product) => void;
 }
 
 export const ProductCard = ({ 
+  id,
   title, 
   description, 
   price, 
   rating, 
   downloads, 
   category, 
-  image 
+  image,
+  onViewDetails
 }: ProductCardProps) => {
+  const product = { id, title, description, price, rating, downloads, category, image };
+  
   return (
     <Card className="overflow-hidden hover:shadow-elevated transition-all duration-300 border-border/50 bg-gradient-card">
       <div className="aspect-video relative overflow-hidden bg-muted">
@@ -57,9 +56,9 @@ export const ProductCard = ({
       
       <CardFooter className="p-5 pt-0 flex items-center justify-between">
         <div className="font-bold text-2xl text-primary">
-          ${price}
+          ₹{price * 80}
         </div>
-        <Button variant="hero" size="sm">
+        <Button variant="hero" size="sm" onClick={() => onViewDetails(product)}>
           View Details
         </Button>
       </CardFooter>

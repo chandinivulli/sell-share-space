@@ -1,8 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Code2, ShoppingCart, User } from "lucide-react";
+import { Code2, User, LogOut } from "lucide-react";
+import { CartSheet } from "@/components/CartSheet";
+import { supabase } from "@/integrations/supabase/client";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 export const Navbar = () => {
+  const [user, setUser] = useState<SupabaseUser | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    toast.success("Signed out successfully");
+    navigate("/");
+  };
+
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-lg">
       <div className="container flex h-16 items-center justify-between">
@@ -24,13 +50,20 @@ export const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="ghost" size="icon">
-            <ShoppingCart className="h-5 w-5" />
-          </Button>
-          <Button variant="outline" size="sm">
-            <User className="h-4 w-4 mr-2" />
-            Sign In
-          </Button>
+          <CartSheet />
+          {user ? (
+            <Button variant="outline" size="sm" onClick={handleSignOut}>
+              <LogOut className="h-4 w-4 mr-2" />
+              Sign Out
+            </Button>
+          ) : (
+            <Link to="/auth">
+              <Button variant="outline" size="sm">
+                <User className="h-4 w-4 mr-2" />
+                Sign In
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </nav>

@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { ProductCard } from "@/components/ProductCard";
+import { ProductDetailModal } from "@/components/ProductDetailModal";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter } from "lucide-react";
+import { Product } from "@/contexts/CartContext";
 
 const mockProducts = [
   {
@@ -71,6 +74,23 @@ const mockProducts = [
 const categories = ["All", "Dashboard", "Authentication", "Portfolio", "Full Stack", "CMS", "Productivity"];
 
 const Marketplace = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const filteredProducts = mockProducts.filter((product) => {
+    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
+    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         product.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const handleViewDetails = (product: Product) => {
+    setSelectedProduct(product);
+    setModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -91,6 +111,8 @@ const Marketplace = () => {
             <Input 
               placeholder="Search projects..." 
               className="pl-10 h-12"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
           <Button variant="outline" size="lg" className="gap-2">
@@ -103,20 +125,33 @@ const Marketplace = () => {
           {categories.map((category) => (
             <Badge 
               key={category}
-              variant={category === "All" ? "default" : "outline"}
+              variant={selectedCategory === category ? "default" : "outline"}
               className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors px-4 py-2"
+              onClick={() => setSelectedCategory(category)}
             >
               {category}
             </Badge>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mockProducts.map((product) => (
-            <ProductCard key={product.id} {...product} />
-          ))}
-        </div>
+        {filteredProducts.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground text-lg">No projects found</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} {...product} onViewDetails={handleViewDetails} />
+            ))}
+          </div>
+        )}
       </main>
+
+      <ProductDetailModal 
+        product={selectedProduct}
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+      />
     </div>
   );
 };
