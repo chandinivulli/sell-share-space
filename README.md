@@ -1,73 +1,79 @@
-# Welcome to your Lovable project
+# 🏠 Sell Share Space
 
-## Project info
+🔗 **Live Demo:** [https://sell-share-space.vercel.app](https://sell-share-space.vercel.app)
 
-**URL**: https://lovable.dev/projects/464546a8-c872-4aad-8e3b-12cae8f234db
+---
 
-## How can I edit this code?
+## 📘 Overview
 
-There are several ways of editing your application.
+**Sell Share Space** is a full-stack web application that enables users to buy, sell, and share pre-owned items easily. It features a modern, responsive interface and a powerful backend API for smooth and secure operations.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/464546a8-c872-4aad-8e3b-12cae8f234db) and start prompting.
+## ✨ Features
 
-Changes made via Lovable will be committed automatically to this repo.
+* 👤 **User Authentication** – Sign up, log in, and manage accounts.
+* 📦 **Manage Listings** – Add, edit, delete, and view products.
+* 🔍 **Search & Filter** – Find items by category, price, or keywords.
+* 💬 **Item Details View** – Full description, images, and contact option.
+* 📱 **Responsive UI** – Works seamlessly on all devices.
+* 🔗 **API Integrated** – Frontend connects to backend via REST APIs.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## ⚙️ Tech Stack
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Frontend:** React (Vite), Axios, CSS / Tailwind, Vercel
+**Backend:** Java (Spring Boot), Spring Data JPA, MySQL / H2
+**Build Tools:** Maven (backend), npm / yarn (frontend)
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🚀 Deployment
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+* 🌐 **Frontend:** Hosted on **Vercel**
+* 🖥️ **Backend:** Deploy on **Railway / Render / AWS EC2**
+* 🗄️ **Database:** MySQL / H2 (configurable)
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 🛠️ Setup & Run
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/sell-share-space.git
+cd sell-share-space
+
+# Run backend (Spring Boot)
+cd backend
+mvn spring-boot:run
+
+# Run frontend (React + Vite)
+cd ../frontend
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Frontend default: `http://localhost:5173`
+Backend default: `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 📚 Future Enhancements
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+* 🔐 JWT-based authentication
+* 💳 Payment gateway integration
+* 💬 User chat system
+* 🧠 Smart search with filters & pagination
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## 👩‍💻 Author
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+**CHANDINI VULLI**
+📩 *chandini.vulli@sasi.ac.in*
+🌐 *Project Link:* [https://sell-share-space.vercel.app](https://sell-share-space.vercel.app)
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/464546a8-c872-4aad-8e3b-12cae8f234db) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+⭐ *If you like this project, consider giving it a star on GitHub!*
