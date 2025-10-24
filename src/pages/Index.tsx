@@ -52,7 +52,7 @@ const Index = () => {
       {/* Features Section */}
       <section className="container py-20">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Why Choose DevMarket?</h2>
+          <h2 className="text-4xl font-bold mb-4">Why Choose LikMarket?</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             A trusted platform connecting developers worldwide
           </p>
@@ -103,7 +103,7 @@ const Index = () => {
           <CardContent className="py-16 px-8 text-center">
             <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
             <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-              Join thousands of developers already buying and selling projects on DevMarket
+              Join thousands of developers already buying and selling projects on LikMarket
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Link to="/marketplace">
@@ -122,7 +122,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border/50 py-8 bg-muted/30">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>© 2024 DevMarket. Built for developers, by developers.</p>
+          <p>© 2024 LikMarket. Built for developers, by developers.</p>
         </div>
       </footer>
     </div>

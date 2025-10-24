@@ -34,7 +34,7 @@ export const Navbar = () => {
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 font-bold text-xl">
           <Code2 className="h-6 w-6 text-primary" />
-          <span className="bg-gradient-primary bg-clip-text text-transparent">DevMarket</span>
+          <span className="bg-gradient-primary bg-clip-text text-transparent">LikMarket</span>
         </Link>
         
         <div className="hidden md:flex items-center gap-8">
